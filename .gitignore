@@ -21,3 +21,4 @@ node_modules/
 /.vscode
 /pw-user-data
 /lhci-reports
+db.sql
