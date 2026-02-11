@@ -7,8 +7,6 @@ module.exports = {
       chromeFlags: [
         "--user-data-dir=C:/Users/mshah/AppData/Local/Google/Chrome/User Data",
         "--profile-directory=Default",
-        "--enable-logging=stderr",
-        "--v=1",
       ],
       settings: {
         disableStorageReset: true,
