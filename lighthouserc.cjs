@@ -9,6 +9,7 @@ module.exports = {
       numberOfRuns: 1,
       chromeFlags: "--user-data-dir=./pw-user-data",
       settings: {
+        disableStorageReset: true,
         formFactor: "desktop",
         screenEmulation: {
           mobile: false,
