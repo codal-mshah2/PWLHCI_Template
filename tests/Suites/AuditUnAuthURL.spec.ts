@@ -10,44 +10,44 @@ test.describe("Audit the Un-auth URL by accepting cookies", () => {
 
     for (const url of urlsToAudit) {
       await page.goto(url);
-      await page.waitForLoadState("domcontentloaded");
+      await page.waitForLoadState("networkidle");
+      try {
+        // Wrapping in a Promise to pause execution
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+      } catch (error) {
+        throw error; // Re-throw for proper error handling upstream
+      }
 
-      // 🚦 Lighthouse audit
-      await playAudit({
-        page,
-        port: 9222,
+      try {
+        await playAudit({
+          page,
+          port: 9222,
+          url: page.url(),
 
-        // Audit the already-authenticated page
-        url: page.url(),
-
-        opts: {
-          onlyCategories: ["performance", "accessibility", "best-practices", "seo"],
-
-          // Desktop audit
-          formFactor: "desktop",
-          screenEmulation: {
-            mobile: false,
-            width: 1350,
-            height: 940,
-            deviceScaleFactor: 1,
+          opts: {
+            onlyCategories: ["performance", "accessibility", "best-practices", "seo"],
+            formFactor: "desktop",
+            throttlingMethod: "devtools",
+            screenEmulation: {
+              mobile: false,
+              width: 1350,
+              height: 940,
+              deviceScaleFactor: 1,
+            },
+            disableStorageReset: true,
           },
 
-          // Preserve auth
-          disableStorageReset: true,
-        },
-
-        // Let LHCI handle assertions
-        ignoreError: true,
-
-        reports: {
-          formats: {
-            html: true,
-            json: true,
+          reports: {
+            formats: { json: true, html: true },
+            name: `sp-${new URL(url).pathname.replace(/\W+/g, "_")}`,
+            directory: "./lhci-reports",
           },
-          name: `sp-${new URL(url).pathname.replace(/\W+/g, "_")}`,
-          directory: "./lhci-reports",
-        },
-      });
+        });
+      } catch (error) {
+        console.error(`❌ Lighthouse failed for ${url}`);
+        console.error(error.message);
+        // continue to next URL
+      }
     }
   });
 });

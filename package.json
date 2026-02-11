@@ -35,5 +35,9 @@
     "playpom": "file:./fixtures/PlayPOM-1.1.1.tgz",
     "playwright": "^1.58.2",
     "playwright-lighthouse": "^4.0.0"
+  },
+  "dependencies": {
+    "@lhci/server": "^0.15.1",
+    "sqlite3": "^5.1.7"
   }
 }
