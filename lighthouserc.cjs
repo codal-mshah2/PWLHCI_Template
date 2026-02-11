@@ -4,7 +4,10 @@ module.exports = {
       url: ["https://7.qa.tacorosa.club/"],
       numberOfRuns: 1,
 
-      chromeFlags: ["--user-data-dir=./pw-user-data", "--profile-directory=Default"],
+      chromeFlags: [
+        "--user-data-dir=C:\\Users\\mshah\\AppData\\Local\\Google\\Chrome\\User Data\\Default",
+        "--profile-directory=Default",
+      ],
 
       settings: {
         disableStorageReset: true,
