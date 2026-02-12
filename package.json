@@ -39,5 +39,8 @@
   "dependencies": {
     "@lhci/server": "^0.15.1",
     "sqlite3": "^5.1.7"
+  },
+  "overrides": {
+    "lighthouse": "12.6.1"
   }
 }
