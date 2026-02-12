@@ -8,7 +8,7 @@ const rawProjectTest = test.extend<{ page: Page }>({
   page: async ({ playwright }, use) => {
     const baseURL = ProjectConfig.get("baseURL");
     const context = await playwright.chromium.launchPersistentContext("./pw-user-data", {
-      headless: false,
+      headless: true,
       args: ["--remote-debugging-port=9222"],
     });
 
