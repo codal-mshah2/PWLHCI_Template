@@ -1,1 +1,5 @@
 npx lhci upload --inputDir=.lighthouseci -> for just uploading , input direactory should be the one that has .json report
+
+
+Use build token 56cb1a43-c83e-42fd-909a-31850b9abeed to add data.
+Use admin token Zp7qS0DFxD2jxyrh7Fd4AvWlD2qrkm4elB38SA3B to manage data. KEEP THIS SECRET!
